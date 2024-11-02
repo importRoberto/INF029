@@ -22,6 +22,7 @@
 
 // #################################################
 
+
 #include <stdio.h>
 #include "RobertoBarreto20241160031.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
@@ -43,7 +44,7 @@ DataQuebrada quebraData(char data[]);
 int somar(int x, int y)
 {
     int soma;
-    soma = x + y;
+    soma = x + y + x;
     return soma;
 }
 
