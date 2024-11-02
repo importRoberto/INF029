@@ -37,14 +37,13 @@ DataQuebrada quebraData(char data[]);
     Somar dois valores x e y e retonar o resultado da soma
 @entrada
     dois inteiros x e y
-    dsadassdaasdasdawwwdsawcxzcx
 @saida
     resultado da soma (x + y)
  */
 int somar(int x, int y)
 {
     int soma;
-    soma = x + y + x;
+    soma = x + y;
     return soma;
 }
 
