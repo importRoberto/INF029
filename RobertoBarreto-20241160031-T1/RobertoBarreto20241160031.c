@@ -43,7 +43,7 @@ DataQuebrada quebraData(char data[]);
 int somar(int x, int y)
 {
     int soma;
-    soma = x + y;
+    soma = x + y + x;
     return soma;
 }
 
