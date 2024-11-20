@@ -1,10 +1,15 @@
 //Testes isolados da Questão 1
 
 #include <stdio.h>
-#include "RobertoBarreto20241160031.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
+#include <string.h>
+#include "RobertoBarreto20241160031.h"
 
 DataQuebrada quebraData(char data[]);
+
+int bissexto(int ano){
+
+}
 
 /*---------------------------------- Q1 = validar data -------------------------------
 @objetivo
