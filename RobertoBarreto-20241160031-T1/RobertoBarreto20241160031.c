@@ -30,56 +30,6 @@
 DataQuebrada quebraData(char data[]);
 
 /*
-## função utilizada para testes  ##
-
- somar = somar dois valores
-@objetivo
-    Somar dois valores x e y e retonar o resultado da soma
-@entrada
-    dois inteiros x e y
-@saida
-    resultado da soma (x + y)
- */
-int somar(int x, int y)
-{
-    int soma;
-    soma = x + y;
-    return soma;
-}
-
-/*
-## função utilizada para testes  ##
-
- fatorial = fatorial de um número
-@objetivo
-    calcular o fatorial de um número
-@entrada
-    um inteiro x
-@saida
-    fatorial de x -> x!
- */
-int fatorial(int x)
-{ //função utilizada para testes
-  int i, fat = 1;
-    
-  for (i = x; i > 1; i--)
-    fat = fat * i;
-    
-  return fat;
-}
-
-int teste(int a)
-{
-    int val;
-    if (a == 2)
-        val = 3;
-    else
-        val = 4;
-
-    return val;
-}
-
-/*
  Q1 = validar data
 @objetivo
     Validar uma data
@@ -224,24 +174,24 @@ int q6(int numerobase, int numerobusca)
 
 
 DataQuebrada quebraData(char data[]){
-  DataQuebrada dq;
-  char sDia[3];
+	DataQuebrada dq;
+  	char sDia[3];
 	char sMes[3];
 	char sAno[5];
 	int i; 
 
 	for (i = 0; data[i] != '/'; i++){
-		sDia[i] = data[i];	
+		sDia[i] = data[i];
 	}
-	if(i == 1 || i == 2){ // testa se tem 1 ou dois digitos
+	if (i == 1 || i == 2){ // testa se tem 1 ou dois digitos
 		sDia[i] = '\0';  // coloca o barra zero no final
-	}else {
+	} else {
 		dq.valido = 0;
     return dq;
-  }  
+	}  
 	
 
-	int j = i + 1; //anda 1 cada para pular a barra
+	int j = i + 1; //anda 1 casa para pular a barra
 	i = 0;
 
 	for (; data[j] != '/'; j++){
@@ -249,9 +199,9 @@ DataQuebrada quebraData(char data[]){
 		i++;
 	}
 
-	if(i == 1 || i == 2){ // testa se tem 1 ou dois digitos
+	if (i == 1 || i == 2){ // testa se tem 1 ou dois digitos
 		sMes[i] = '\0';  // coloca o barra zero no final
-	}else {
+	} else {
 		dq.valido = 0;
     return dq;
   }
@@ -260,14 +210,14 @@ DataQuebrada quebraData(char data[]){
 	j = j + 1; //anda 1 cada para pular a barra
 	i = 0;
 	
-	for(; data[j] != '\0'; j++){
+	for (; data[j] != '\0'; j++){
 	 	sAno[i] = data[j];
 	 	i++;
 	}
 
-	if(i == 2 || i == 4){ // testa se tem 2 ou 4 digitos
+	if (i == 2 || i == 4){ // testa se tem 2 ou 4 digitos
 		sAno[i] = '\0';  // coloca o barra zero no final
-	}else {
+	} else {
 		dq.valido = 0;
     return dq;
   }
