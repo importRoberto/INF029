@@ -7,9 +7,16 @@
 
 DataQuebrada quebraData(char data[]);
 
+//Função para verificar se o ano é bissexto
 int bissexto(int ano){
-
+	if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0){
+		return 1;
+	}
+	return 0;
 }
+
+
+
 
 /*---------------------------------- Q1 = validar data -------------------------------
 @objetivo
@@ -23,26 +30,41 @@ int bissexto(int ano){
     Não utilizar funções próprias de string (ex: strtok)   
     pode utilizar strlen para pegar o tamanho da string
  */
+
 int q1(char data[])
 {
-    int datavalida = 1;
+    DataQuebrada dq = quebraData(data);
 
+	//Checa se o tamanho é compatível
+	if (strlen(data)>10 || strlen(data)<6){
+		return 0;
+	}
 
-  //quebrar a string data em strings sDia, sMes, sAno
+    // Verifica se a data foi quebrada corretamente
+    if (dq.valido == 0) {
+        return 0; // Data inválida se a quebra falhou
+    }
 
+    // Verificar se o mês está no intervalo de 1 a 12
+    if (dq.iMes < 1 || dq.iMes > 12) {
+        return 0; // Mês inválido
+    }
 
-  //printf("%s\n", data);
+    // Verificar se o dia está dentro do intervalo válido para o mês
+    int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }; // Para meses com 31 dias
+    if (dq.iMes == 2) { // Se for fevereiro, verifica o ano bissexto
+        if (isBissexto(dq.iAno)) {
+            diasPorMes[1] = 29; // Fevereiro tem 29 dias no ano bissexto
+        }
+    }
 
-    if (datavalida)
-        return 1;
-    else
-        return 0;
+    if (dq.iDia < 1 || dq.iDia > diasPorMes[dq.iMes - 1]) {
+        return 0; // Dia inválido para o mês
+    }
+
+    // Se passar por todas as validações
+    return 1; // Data válida
 }
-
-
-
-
-
 
 DataQuebrada quebraData(char data[]){
 	DataQuebrada dq;
@@ -100,4 +122,23 @@ DataQuebrada quebraData(char data[]){
 	dq.valido = 1;
     
   return dq;
+}
+
+int main() {
+    // Testes para verificar se a função q1 está funcionando corretamente
+    char data[] = "29/02/2024";
+    if (q1(data)) {
+        printf("Data %s é válida.\n", data);
+    } else {
+        printf("Data %s é inválida.\n", data);
+    }
+
+    char data2[] = "31/04/2023";
+    if (q1(data2)) {
+        printf("Data %s é válida.\n", data2);
+    } else {
+        printf("Data %s é inválida.\n", data2);
+    }
+
+    return 0;
 }
