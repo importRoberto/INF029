@@ -32,13 +32,16 @@ DataQuebrada quebraData(char data[]);
 
 //Função para verificar se o ano é bissexto
 int bissexto(int ano){
+    //Checa se o aaaa tem 2 caracteres e insere +2000 anos, como sugerido
+    if (ano < 100){
+        ano += 2000;
+    }
+
 	if ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0){
 		return 1;
 	}
 	return 0;
 }
-
-
 
 
 /*---------------------------------- Q1 = validar data -------------------------------
@@ -165,7 +168,7 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     return qtdOcorrencias;
 }
 
-/*
+
  Q5 = inverte número
  @objetivo
     Inverter número inteiro
