@@ -26,15 +26,26 @@
 #include <stdio.h>
 #include "RobertoBarreto20241160031.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
+#include <string.h>
 
 DataQuebrada quebraData(char data[]);
 
-/*
- Q1 = validar data
+//Função para verificar se o ano é bissexto
+int bissexto(int ano){
+	if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0){
+		return 1;
+	}
+	return 0;
+}
+
+
+
+
+/*---------------------------------- Q1 = validar data -------------------------------
 @objetivo
     Validar uma data
 @entrada
-    uma string data. Formatos que devem ser aceitos: dd/mm/aaaa, onde dd = dia, mm = mês, e aaaa = ano. dd em mm podem ter apenas um digito, e aaaa podem ter apenas dois digitos.
+    Uma string data. Formatos que devem ser aceitos: dd/mm/aaaa, onde dd = dia, mm = mês, e aaaa = ano. dd em mm podem ter apenas um digito, e aaaa podem ter apenas dois digitos.
 @saida
     0 -> se data inválida
     1 -> se data válida
@@ -42,19 +53,40 @@ DataQuebrada quebraData(char data[]);
     Não utilizar funções próprias de string (ex: strtok)   
     pode utilizar strlen para pegar o tamanho da string
  */
+
 int q1(char data[])
 {
-  int datavalida = 1;
+    DataQuebrada dq = quebraData(data);
 
-  //quebrar a string data em strings sDia, sMes, sAno
+	//Checa se o tamanho é compatível
+	if (strlen(data)>10 || strlen(data)<6){
+		return 0;
+	}
 
+    // Verifica se a data foi quebrada corretamente
+    if (dq.valido == 0) {
+        return 0; // Data inválida se a quebra falhou
+    }
 
-  //printf("%s\n", data);
+    // Verificar se o mês está no intervalo de 1 a 12
+    if (dq.iMes < 1 || dq.iMes > 12) {
+        return 0; // Mês inválido
+    }
 
-  if (datavalida)
-      return 1;
-  else
-      return 0;
+    // Verificar se o dia está dentro do intervalo válido para o mês
+    int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }; // Para meses com 31 dias
+    if (dq.iMes == 2) { // Se for fevereiro, verifica o ano bissexto
+        if (isBissexto(dq.iAno)) {
+            diasPorMes[1] = 29; // Fevereiro tem 29 dias no ano bissexto
+        }
+    }
+
+    if (dq.iDia < 1 || dq.iDia > diasPorMes[dq.iMes - 1]) {
+        return 0; // Dia inválido para o mês
+    }
+
+    // Se passar por todas as validações
+    return 1; // Data válida
 }
 
 
