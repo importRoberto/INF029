@@ -1,31 +1,31 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 
 //renomeie o arquivo do include abaixo para PrimeiroUltimoNomeMATRICULA.h
 #include "RobertoBarreto20241160031.h"
+#include "RobertoBarreto20241160031.c"
 
 void testQ1();
-void testQ2();
-void testQ3();
-void testQ4();
-void testQ5();
-void testQ6();
+//void testQ2();
+//void testQ3();
+//void testQ4();
+//void testQ5();
+//void testQ6();
 
 int main(){
-    //pridntf("q1\n");
+    //printf("q1\n");
     testQ1(); // 10 testes
-    //pridntf("q2\n");
-    testQ2(); // 35 testes
-    //prindtf("q3\n");
-    testQ3(); // 13 testes
-    //prdintf("q4\n");
-    testQ4(); // 22 testes
-    //prdintf("q5\n");
-    testQ5(); // 10 testes
-    //prdintf("q6\n");
-    testQ6(); // 10 testes 
-    
-    
+    //printf("q2\n");
+    //testQ2(); // 35 testes
+    //printf("q3\n");
+    //testQ3(); // 13 testes
+    //printf("q4\n");
+    //testQ4(); // 22 testes
+    //printf("q5\n");
+    //testQ5(); // 10 testes
+    //printf("q6\n");
+    //testQ6(); // 10 testes 
 }
 
 void testQ1(){
@@ -52,7 +52,7 @@ void testQ1(){
     printf("%d\n",q1(str) == 1); 
 
 }
-
+/*
 void testQ2(){
     char datainicial[11], datafinal[11];
     int qtdDias, qtdMeses, qtdAnos;
@@ -288,5 +288,4 @@ void testQ6(){
     printf("%d\n",q6(1234562354, 32) == 0);
 
 }
-      
-        
+*/

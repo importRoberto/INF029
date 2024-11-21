@@ -32,7 +32,7 @@ DataQuebrada quebraData(char data[]);
 
 //Função para verificar se o ano é bissexto
 int bissexto(int ano){
-	if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0){
+	if ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0){
 		return 1;
 	}
 	return 0;
@@ -76,7 +76,7 @@ int q1(char data[])
     // Verificar se o dia está dentro do intervalo válido para o mês
     int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }; // Para meses com 31 dias
     if (dq.iMes == 2) { // Se for fevereiro, verifica o ano bissexto
-        if (isBissexto(dq.iAno)) {
+        if (bissexto(dq.iAno)) {
             diasPorMes[1] = 29; // Fevereiro tem 29 dias no ano bissexto
         }
     }
@@ -88,7 +88,6 @@ int q1(char data[])
     // Se passar por todas as validações
     return 1; // Data válida
 }
-
 
 
 /*
@@ -104,7 +103,6 @@ int q1(char data[])
     3 -> datafinal inválida
     4 -> datainicial > datafinal
     Caso o cálculo esteja correto, os atributos qtdDias, qtdMeses e qtdAnos devem ser preenchidos com os valores correspondentes.
- */
 DiasMesesAnos q2(char datainicial[], char datafinal[])
 {
 
@@ -131,7 +129,7 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
     
 }
 
-/*
+
  Q3 = encontrar caracter em texto
  @objetivo
     Pesquisar quantas vezes um determinado caracter ocorre em um texto
@@ -140,7 +138,6 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
         Se isCaseSensitive != 1, a pesquisa não deve  considerar diferenças entre maiúsculos e minúsculos.
  @saida
     Um número n >= 0.
- */
 int q3(char *texto, char c, int isCaseSensitive)
 {
     int qtdOcorrencias = -1;
@@ -148,7 +145,6 @@ int q3(char *texto, char c, int isCaseSensitive)
     return qtdOcorrencias;
 }
 
-/*
  Q4 = encontrar palavra em texto
  @objetivo
     Pesquisar todas as ocorrências de uma palavra em um texto
@@ -162,7 +158,6 @@ int q3(char *texto, char c, int isCaseSensitive)
         Observe que o índice da posição no texto deve começar ser contado a partir de 1.
         O retorno da função, n, nesse caso seria 1;
 
- */
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
     int qtdOcorrencias = -1;
@@ -178,7 +173,7 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     uma int num.
  @saida
     Número invertido
- */
+
 
 int q5(int num)
 {
@@ -186,7 +181,7 @@ int q5(int num)
     return num;
 }
 
-/*
+
  Q6 = ocorrência de um número em outro
  @objetivo
     Verificar quantidade de vezes da ocorrência de um número em outro
@@ -194,14 +189,14 @@ int q5(int num)
     Um número base (numerobase) e um número de busca (numerobusca).
  @saida
     Quantidade de vezes que número de busca ocorre em número base
- */
+
 
 int q6(int numerobase, int numerobusca)
 {
     int qtdOcorrencias;
     return qtdOcorrencias;
 }
-
+*/
 
 
 
