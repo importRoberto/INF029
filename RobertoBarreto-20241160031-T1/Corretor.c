@@ -10,8 +10,8 @@
 //void testQ2();
 //void testQ3();
 //void testQ4();
-void testQ5();
-//void testQ6();
+//void testQ5();
+void testQ6();
 
 int main(){
     //printf("q1\n");
@@ -22,10 +22,10 @@ int main(){
     //testQ3(); // 13 testes
     //printf("q4\n");
     //testQ4(); // 22 testes
-    printf("q5\n");
-    testQ5(); // 10 testes
-    //printf("q6\n");
-    //testQ6(); // 10 testes 
+    //printf("q5\n");
+    //testQ5(); // 10 testes
+    printf("q6\n");
+    testQ6(); // 10 testes 
 }
 
 /*
@@ -263,7 +263,7 @@ void testQ4(){
 
 }
 
-*/
+
 void testQ5(){
     printf("%d\n",q5(345) == 543);
     printf("%d\n",q5(78) == 87);
@@ -276,7 +276,8 @@ void testQ5(){
     printf("%d\n",q5(8) == 8);
     printf("%d\n",q5(1234) == 4321);
 }
-/*
+
+*/
 void testQ6(){
     printf("%d\n",q6(34567368, 3) == 2);
     printf("%d\n",q6(34567368, 4576) == 0);
@@ -290,4 +291,3 @@ void testQ6(){
     printf("%d\n",q6(1234562354, 32) == 0);
 
 }
-*/

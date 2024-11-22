@@ -239,7 +239,7 @@ Q5 = inverte número
 int q5(int num){
 
     int invert = 0;
-    
+
     while (num != 0){
         invert = invert * 10 + num % 10;
         num /= 10;
@@ -259,13 +259,32 @@ int q5(int num){
  @saida
     Quantidade de vezes que número de busca ocorre em número base
 
+*/
+int q6(int numerobase, int numerobusca) {
+    
+    int qtdOcorrencias = 0;
+    int casa = 1; // Potência de 10 do numerobusca
+    int tempBusca = numerobusca; // Temporário para contar dígitos
 
-int q6(int numerobase, int numerobusca)
-{
-    int qtdOcorrencias;
+    // Calcula a potência de 10 do numerobusca
+    while (tempBusca > 0) {
+        casa *= 10;
+        tempBusca /= 10;
+    }
+
+    // Verifica se numerobusca está em numerobase
+    while (numerobase > 0) {
+        if (numerobase % casa == numerobusca) { 
+            numerobase -= numerobusca; // Remove numerobusca de numerobase
+            qtdOcorrencias++;
+        }
+        numerobase /= 10; // Remove último dígito
+    }
+ 
     return qtdOcorrencias;
 }
-*/
+
+
 
 
 
