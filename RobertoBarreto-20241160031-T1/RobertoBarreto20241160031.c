@@ -251,18 +251,26 @@ int q3(char *texto, char c, int isCaseSensitive)
 
 int q4(char *strTexto, char *strBusca, int posicoes[30]) {   
 
-    int qtdOcorrencias = 0;
-    int posicoesBusca = 0;
+    // Inicializações
+    int qtdOcorrencias = 0, posicoesBusca = 0;
 
-    for(int i = 0; i < strlen(strTexto) - strlen(strBusca); i++) {
+    // Evita aviso de incompatibilidade de int com strlen, e deixa mais bunitin
+    int tamTexto = strlen(strTexto), tamBusca = strlen(strBusca);
 
+    // Percorre o texto até a posição onde ainda é possível encontrar a string de busca
+    for(int i = 0; i < tamTexto - tamBusca; i++) {
+        
+        // Variáveis auxiliares
         int aux = 0;
         int k = i;
-        
-        for(int j = 0; j < strlen(strBusca); j++) {
+
+        // Percorre a string de busca
+        for(int j = 0; j < tamBusca; j++) {
+            // Ignora caracteres especiais (no caso, -61)
             if(strTexto[k] == -61 || strBusca[j] == -61) {
             continue;
 
+            // Se os caracteres correspondem, incrementa o contador auxiliar e avança no texto
             } else if(strTexto[k] == strBusca[j]) {
                 aux++;
                 k++;
@@ -272,12 +280,18 @@ int q4(char *strTexto, char *strBusca, int posicoes[30]) {
             }
         }
 
-        if(aux == strlen(strBusca)){
-            qtdOcorrencias++;
+        // Se todos os caracteres da string de busca foram encontrados
+        if(aux == tamBusca){
+            // Armazena a posição inicial e final
             posicoes[posicoesBusca] = i + 1;
-            posicoes[posicoesBusca + 1] = k;
-            posicoesBusca += 2;
-            i += strlen(strBusca) - 1;
+            posicoesBusca++;
+            
+            posicoes[posicoesBusca] = k;
+            posicoesBusca++;
+            // Avança no texto para evitar sobreposição de buscas
+            i += tamBusca - 1;
+
+            qtdOcorrencias++;
         }
 
     }
@@ -347,8 +361,7 @@ int q6(int numerobase, int numerobusca) {
 
 
 
-
-
+//Função para quebrar a data da Q1 e Q2
 DataQuebrada quebraData(char data[]){
 	DataQuebrada dq;
   	char sDia[3];
