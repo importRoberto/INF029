@@ -104,81 +104,88 @@ int q1(char data[])
 
 /*
  Q2 = diferença entre duas datas
- @objetivo
-    Calcular a diferença em anos, meses e dias entre duas datas
- @entrada
-    uma string datainicial, uma string datafinal. 
- @saida
-    Retorna um tipo DiasMesesAnos. No atributo retorno, deve ter os possíveis valores abaixo
-    1 -> cálculo de diferença realizado com sucesso
-    2 -> datainicial inválida
-    3 -> datafinal inválida
-    4 -> datainicial > datafinal
-    Caso o cálculo esteja correto, os atributos qtdDias, qtdMeses e qtdAnos devem ser preenchidos com os valores correspondentes.
+    @objetivo
+        Calcular a diferença em anos, meses e dias entre duas datas
+    @entrada
+        uma string datainicial, uma string datafinal. 
+    @saida
+        Retorna um tipo DiasMesesAnos. No atributo retorno, deve ter os possíveis valores abaixo
+        1 -> cálculo de diferença realizado com sucesso
+        2 -> datainicial inválida
+        3 -> datafinal inválida
+        4 -> datainicial > datafinal
+        Caso o cálculo esteja correto, os atributos qtdDias, qtdMeses e qtdAnos devem ser preenchidos com os valores correspondentes.
 */
 
-DiasMesesAnos q2(char datainicial[], char datafinal[]){
+DiasMesesAnos q2(char datainicial[], char datafinal[]) {
 
-    //calcule os dados e armazene nas três variáveis a seguir
+    // Estrutura para armazenar os dados calculados
     DiasMesesAnos dma;
 
-    //inicialização dos campos da estrutura DiasMesesAnos com zero
+    // Inicialização dos campos da estrutura DiasMesesAnos com zero
     dma.qtdAnos = 0;
     dma.qtdMeses = 0;
     dma.qtdDias = 0;
 
-    if (q1(datainicial) == 0){
+    // Verifica se as datas são válidas
+    if (q1(datainicial) == 0) {
         dma.retorno = 2;
         return dma;
-    }else if (q1(datafinal) == 0){
+
+    } else if (q1(datafinal) == 0) {
         dma.retorno = 3;
         return dma;
-    }else{
-        DataQuebrada Final, Inicial; //variáveis tipo DataQuebrada que irão armazenar os valores separados
-        Inicial = quebraData(datainicial); //chamada da função quebraData para quebrar data em dia, mês e ano
-        Final = quebraData(datafinal); //chamada da função quebraData para quebrar data em dia, mês e ano
+
+    } else {
+        // Variáveis para armazenar os valores separados das datas
+        DataQuebrada fim, inicio;
+        inicio = quebraData(datainicial); // Quebra a data inicial em dia, mês e ano
+        fim = quebraData(datafinal); // Quebra a data final em dia, mês e ano
         
-        //verificando se a data final não é menor que a data inicial
-        if(Final.iAno < Inicial.iAno || ( Final.iAno == Inicial.iAno && Final.iMes < Inicial.iMes) || ( Final.iAno == Inicial.iAno && Final.iMes == Inicial.iMes && Final.iDia < Inicial.iDia )){
+        // Verifica se a data final não é menor que a data inicial
+        if (fim.iAno < inicio.iAno || 
+            (fim.iAno == inicio.iAno && fim.iMes < inicio.iMes) || 
+            (fim.iAno == inicio.iAno && fim.iMes == inicio.iMes && fim.iDia < inicio.iDia)) {
             dma.retorno = 4;
             return dma;
-        }
-            
-        else{//calculando a distancia entre as datas
-            dma.retorno=1;
-            
-            // Verifica a diferença entre os anos
-            dma.qtdAnos = Final.iAno - Inicial.iAno;
 
-            //Verifica a diferença de meses
-            dma.qtdMeses = Final.iMes - Inicial.iMes;
-            if(dma.qtdMeses<0){ // casos em que a diferença resulta em menos de um ano
+        } else {
+            // Calcula a diferença entre as datas
+            dma.retorno = 1;
+            
+            // Calcula a diferença de anos
+            dma.qtdAnos = fim.iAno - inicio.iAno;
+
+            // Calcula a diferença de meses
+            dma.qtdMeses = fim.iMes - inicio.iMes;
+
+            if (dma.qtdMeses < 0) { // Casos em que a diferença resulta em menos de um ano
                 dma.qtdMeses += 12;
                 dma.qtdAnos--;
             }
 
-            //Verifica a quantidade de dias
-            dma.qtdDias = Final.iDia - Inicial.iDia;
-            if(dma.qtdDias<0){
-                dma.qtdDias += diasNoMes(Inicial.iMes, Inicial.iAno);
-                if(bissexto(Inicial.iAno) && Inicial.iMes==2){
-                    dma.qtdDias--;//verificar
+            // Calcula a quantidade de dias
+            dma.qtdDias = fim.iDia - inicio.iDia;
+            if (dma.qtdDias < 0) {
+                dma.qtdDias += diasNoMes(inicio.iMes, inicio.iAno);
+                if (bissexto(inicio.iAno) && inicio.iMes == 2) {
+                    dma.qtdDias--; // Verifica ano bissexto
                 }
+
                 dma.qtdMeses--;
             }
-            if(((bissexto(Inicial.iAno) && Inicial.iMes == 1) || 
-                (bissexto(Inicial.iAno) && Inicial.iMes == 2 && Inicial.iDia == 29)) &&
-                ((Inicial.iAno == Final.iAno && Final.iMes !=2) ||
-                (Inicial.iAno < Final.iAno && Final.iMes < 2)))
-            {
+
+            // Ajusta a quantidade de dias para anos bissextos
+            if (((bissexto(inicio.iAno) && inicio.iMes == 1) || 
+                (bissexto(inicio.iAno) && inicio.iMes == 2 && inicio.iDia == 29)) &&
+                ((inicio.iAno == fim.iAno && fim.iMes != 2) ||
+                (inicio.iAno < fim.iAno && fim.iMes < 2))) {
                 dma.qtdDias++;
             }           
             
             return dma;
         }
-
     }
-
 }
 
 /*
@@ -216,7 +223,9 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 
     return qtdOcorrencias;
 }
+*/
 
+/*
 Q5 = inverte número
  @objetivo
     Inverter número inteiro
@@ -224,15 +233,24 @@ Q5 = inverte número
     uma int num.
  @saida
     Número invertido
+*/
 
 
-int q5(int num)
-{
+int q5(int num){
+
+    int invert = 0;
+    
+    while (num != 0){
+        invert = invert * 10 + num % 10;
+        num /= 10;
+    }
+
+    num = invert;
 
     return num;
 }
 
-
+/*
  Q6 = ocorrência de um número em outro
  @objetivo
     Verificar quantidade de vezes da ocorrência de um número em outro
