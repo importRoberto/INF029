@@ -8,24 +8,24 @@
 
 //void testQ1();
 //void testQ2();
-//void testQ3();
+void testQ3();
 //void testQ4();
 //void testQ5();
-void testQ6();
+//void testQ6();
 
 int main(){
     //printf("q1\n");
     //testQ1(); // 10 testes
     //printf("q2\n");
     //testQ2(); // 35 testes
-    //printf("q3\n");
-    //testQ3(); // 13 testes
+    printf("q3\n");
+    testQ3(); // 13 testes
     //printf("q4\n");
     //testQ4(); // 22 testes
     //printf("q5\n");
     //testQ5(); // 10 testes
-    printf("q6\n");
-    testQ6(); // 10 testes 
+    //printf("q6\n");
+    //testQ6(); // 10 testes 
 }
 
 /*
@@ -186,7 +186,7 @@ void testQ2(){
     printf("35  %d\n",dma.qtdAnos == 0);
 
 }
-
+*/
 void testQ3(){
     char str[250];
     strcpy(str,"Renato Lima Novais");
@@ -208,7 +208,7 @@ void testQ3(){
 
     
 }
-
+/*
 void testQ4(){
     char strTexto[250];
     char strBusca[50];
@@ -277,7 +277,7 @@ void testQ5(){
     printf("%d\n",q5(1234) == 4321);
 }
 
-*/
+
 void testQ6(){
     printf("%d\n",q6(34567368, 3) == 2);
     printf("%d\n",q6(34567368, 4576) == 0);
@@ -291,3 +291,4 @@ void testQ6(){
     printf("%d\n",q6(1234562354, 32) == 0);
 
 }
+*/

@@ -36,7 +36,7 @@ int bissexto(int ano){
     if (ano < 100){
         ano += 2000;
     }
-
+    
 	if ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0){
 		return 1;
 	}
@@ -44,14 +44,26 @@ int bissexto(int ano){
 	return 0;
 }
 
+//Usada na Q1 e Q2, cria um array para dizer quais os dias em cada mês
 int diasNoMes(int mes, int ano) {
     int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-    if (mes == 2) { // Se for fevereiro, verifica o ano bissexto
+    
+    // if fevereiro, checa bissexto
+    if (mes == 2) {
         if (bissexto(ano)) {
-            return 29; // Fevereiro tem 29 dias no ano bissexto
+             // Fevereiro = 29 no bissexto
+            return 29;
         }
     }
     return diasPorMes[mes - 1];
+}
+
+//Função usada na Q3 para converter maiúsculos para minúsculos
+int minuscular(char ch) {
+    if (ch >= 'A' && ch <= 'Z') {
+        return ch + ('a' - 'A');
+    }
+    return ch;
 }
 
 /*
@@ -197,13 +209,32 @@ DiasMesesAnos q2(char datainicial[], char datafinal[]) {
         Se isCaseSensitive != 1, a pesquisa não deve  considerar diferenças entre maiúsculos e minúsculos.
  @saida
     Um número n >= 0.
+*/
+
 int q3(char *texto, char c, int isCaseSensitive)
 {
-    int qtdOcorrencias = -1;
+    // Inicializa a contagem de ocorrências
+    int qtdOcorrencias = 0;
 
-    return qtdOcorrencias;
+    // Percorre cada caractere da string
+    for (int i = 0; texto[i] != '\0'; i++) {
+        // Se a pesquisa não for case sensitive, converte ambos os caracteres para minúsculas
+        if (!isCaseSensitive) {
+            if (minuscular(texto[i]) == minuscular(c)) {
+                qtdOcorrencias++;
+            }
+        } else {
+            // Se a pesquisa for case sensitive, compara diretamente
+            if (texto[i] == c) {
+                qtdOcorrencias++;
+            }
+        }
+    }
+
+    return qtdOcorrencias; // Retorna a contagem de ocorrências
 }
 
+/*
  Q4 = encontrar palavra em texto
  @objetivo
     Pesquisar todas as ocorrências de uma palavra em um texto
@@ -260,6 +291,7 @@ int q5(int num){
     Quantidade de vezes que número de busca ocorre em número base
 
 */
+/*
 int q6(int numerobase, int numerobusca) {
     
     int qtdOcorrencias = 0;
@@ -283,7 +315,7 @@ int q6(int numerobase, int numerobusca) {
  
     return qtdOcorrencias;
 }
-
+*/
 
 
 
