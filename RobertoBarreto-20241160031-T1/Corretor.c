@@ -8,8 +8,8 @@
 
 //void testQ1();
 //void testQ2();
-void testQ3();
-//void testQ4();
+//void testQ3();
+void testQ4();
 //void testQ5();
 //void testQ6();
 
@@ -18,10 +18,10 @@ int main(){
     //testQ1(); // 10 testes
     //printf("q2\n");
     //testQ2(); // 35 testes
-    printf("q3\n");
-    testQ3(); // 13 testes
-    //printf("q4\n");
-    //testQ4(); // 22 testes
+    //printf("q3\n");
+    //testQ3(); // 13 testes
+    printf("q4\n");
+    testQ4(); // 22 testes
     //printf("q5\n");
     //testQ5(); // 10 testes
     //printf("q6\n");
@@ -186,7 +186,7 @@ void testQ2(){
     printf("35  %d\n",dma.qtdAnos == 0);
 
 }
-*/
+
 void testQ3(){
     char str[250];
     strcpy(str,"Renato Lima Novais");
@@ -208,7 +208,8 @@ void testQ3(){
 
     
 }
-/*
+*/
+
 void testQ4(){
     char strTexto[250];
     char strBusca[50];
@@ -218,6 +219,7 @@ void testQ4(){
         posicoes[i] = -1;
     }
     strcpy(strTexto,"Laboratorio de programacao: para ratos de programação");
+    printf("Laboratorio de programacao: para ratos de programação\n");
     strcpy(strBusca,"rato");
     printf("%d\n",q4(strTexto, strBusca, posicoes) == 2);
     printf("%d\n",posicoes[0]==5);
@@ -230,6 +232,7 @@ void testQ4(){
         posicoes[i] = -1;
     }
     strcpy(strTexto,"Ola, o mundo e muito grande. Tem muitas pessoas, e muitos problemas");
+    printf("Ola, o mundo e muito grande. Tem muitas pessoas, e muitos problemas\n");
     strcpy(strBusca,"mui");
     printf("%d\n",q4(strTexto, strBusca, posicoes) == 3);
     printf("%d\n",posicoes[0]==16);
@@ -243,6 +246,7 @@ void testQ4(){
         posicoes[i] = -1;
     }
     strcpy(strTexto,"Programar é legal?");
+    printf("Programar é legal?\n");
     strcpy(strBusca,"sim");
     printf("%d\n",q4(strTexto, strBusca, posicoes) == 0);
 
@@ -250,6 +254,7 @@ void testQ4(){
         posicoes[i] = -1;
     }
     strcpy(strTexto,"maraaaavilha, meu prograaaama funcionou");
+    printf("maraaaavilha, meu prograaaama funcionou\n");
     strcpy(strBusca,"aa");
     printf("%d\n",q4(strTexto, strBusca, posicoes) == 4);
     printf("%d\n",posicoes[0]==4);
@@ -263,7 +268,7 @@ void testQ4(){
 
 }
 
-
+/*
 void testQ5(){
     printf("%d\n",q5(345) == 543);
     printf("%d\n",q5(78) == 87);

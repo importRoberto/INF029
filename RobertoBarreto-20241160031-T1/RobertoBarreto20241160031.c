@@ -247,14 +247,43 @@ int q3(char *texto, char c, int isCaseSensitive)
         posicoes[1] = 16;
         Observe que o índice da posição no texto deve começar ser contado a partir de 1.
         O retorno da função, n, nesse caso seria 1;
+*/
 
-int q4(char *strTexto, char *strBusca, int posicoes[30])
-{
-    int qtdOcorrencias = -1;
+int q4(char *strTexto, char *strBusca, int posicoes[30]) {   
+
+    int qtdOcorrencias = 0;
+    int posicoesBusca = 0;
+
+    for(int i = 0; i < strlen(strTexto) - strlen(strBusca); i++) {
+
+        int aux = 0;
+        int k = i;
+        
+        for(int j = 0; j < strlen(strBusca); j++) {
+            if(strTexto[k] == -61 || strBusca[j] == -61) {
+            continue;
+
+            } else if(strTexto[k] == strBusca[j]) {
+                aux++;
+                k++;
+
+            } else {
+                break;
+            }
+        }
+
+        if(aux == strlen(strBusca)){
+            qtdOcorrencias++;
+            posicoes[posicoesBusca] = i + 1;
+            posicoes[posicoesBusca + 1] = k;
+            posicoesBusca += 2;
+            i += strlen(strBusca) - 1;
+        }
+
+    }
 
     return qtdOcorrencias;
 }
-*/
 
 /*
 Q5 = inverte número
@@ -291,7 +320,7 @@ int q5(int num){
     Quantidade de vezes que número de busca ocorre em número base
 
 */
-/*
+
 int q6(int numerobase, int numerobusca) {
     
     int qtdOcorrencias = 0;
@@ -315,7 +344,7 @@ int q6(int numerobase, int numerobusca) {
  
     return qtdOcorrencias;
 }
-*/
+
 
 
 
