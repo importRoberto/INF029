@@ -40,11 +40,22 @@ int bissexto(int ano){
 	if ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0){
 		return 1;
 	}
+
 	return 0;
 }
 
+int diasNoMes(int mes, int ano) {
+    int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    if (mes == 2) { // Se for fevereiro, verifica o ano bissexto
+        if (bissexto(ano)) {
+            return 29; // Fevereiro tem 29 dias no ano bissexto
+        }
+    }
+    return diasPorMes[mes - 1];
+}
 
-/*---------------------------------- Q1 = validar data -------------------------------
+/*
+ Q1 = validar data
 @objetivo
     Validar uma data
 @entrada
@@ -56,6 +67,7 @@ int bissexto(int ano){
     Não utilizar funções próprias de string (ex: strtok)   
     pode utilizar strlen para pegar o tamanho da string
  */
+
 
 int q1(char data[])
 {
@@ -77,20 +89,17 @@ int q1(char data[])
     }
 
     // Verificar se o dia está dentro do intervalo válido para o mês
-    int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }; // Para meses com 31 dias
-    if (dq.iMes == 2) { // Se for fevereiro, verifica o ano bissexto
-        if (bissexto(dq.iAno)) {
-            diasPorMes[1] = 29; // Fevereiro tem 29 dias no ano bissexto
-        }
-    }
+    int dias = diasNoMes(dq.iMes, dq.iAno);
 
-    if (dq.iDia < 1 || dq.iDia > diasPorMes[dq.iMes - 1]) {
+    if (dq.iDia < 1 || dq.iDia > dias) {
         return 0; // Dia inválido para o mês
     }
 
     // Se passar por todas as validações
     return 1; // Data válida
 }
+
+
 
 
 /*
@@ -106,33 +115,73 @@ int q1(char data[])
     3 -> datafinal inválida
     4 -> datainicial > datafinal
     Caso o cálculo esteja correto, os atributos qtdDias, qtdMeses e qtdAnos devem ser preenchidos com os valores correspondentes.
-DiasMesesAnos q2(char datainicial[], char datafinal[])
-{
+*/
+
+DiasMesesAnos q2(char datainicial[], char datafinal[]){
 
     //calcule os dados e armazene nas três variáveis a seguir
     DiasMesesAnos dma;
 
+    //inicialização dos campos da estrutura DiasMesesAnos com zero
+    dma.qtdAnos = 0;
+    dma.qtdMeses = 0;
+    dma.qtdDias = 0;
+
     if (q1(datainicial) == 0){
-      dma.retorno = 2;
-      return dma;
+        dma.retorno = 2;
+        return dma;
     }else if (q1(datafinal) == 0){
-      dma.retorno = 3;
-      return dma;
+        dma.retorno = 3;
+        return dma;
     }else{
-      //verifique se a data final não é menor que a data inicial
-      
-      //calcule a distancia entre as datas
+        DataQuebrada Final, Inicial; //variáveis tipo DataQuebrada que irão armazenar os valores separados
+        Inicial = quebraData(datainicial); //chamada da função quebraData para quebrar data em dia, mês e ano
+        Final = quebraData(datafinal); //chamada da função quebraData para quebrar data em dia, mês e ano
+        
+        //verificando se a data final não é menor que a data inicial
+        if(Final.iAno < Inicial.iAno || ( Final.iAno == Inicial.iAno && Final.iMes < Inicial.iMes) || ( Final.iAno == Inicial.iAno && Final.iMes == Inicial.iMes && Final.iDia < Inicial.iDia )){
+            dma.retorno = 4;
+            return dma;
+        }
+            
+        else{//calculando a distancia entre as datas
+            dma.retorno=1;
+            
+            // Verifica a diferença entre os anos
+            dma.qtdAnos = Final.iAno - Inicial.iAno;
 
+            //Verifica a diferença de meses
+            dma.qtdMeses = Final.iMes - Inicial.iMes;
+            if(dma.qtdMeses<0){ // casos em que a diferença resulta em menos de um ano
+                dma.qtdMeses += 12;
+                dma.qtdAnos--;
+            }
 
-      //se tudo der certo
-      dma.retorno = 1;
-      return dma;
-      
+            //Verifica a quantidade de dias
+            dma.qtdDias = Final.iDia - Inicial.iDia;
+            if(dma.qtdDias<0){
+                dma.qtdDias += diasNoMes(Inicial.iMes, Inicial.iAno);
+                if(bissexto(Inicial.iAno) && Inicial.iMes==2){
+                    dma.qtdDias--;//verificar
+                }
+                dma.qtdMeses--;
+            }
+            if(((bissexto(Inicial.iAno) && Inicial.iMes == 1) || 
+                (bissexto(Inicial.iAno) && Inicial.iMes == 2 && Inicial.iDia == 29)) &&
+                ((Inicial.iAno == Final.iAno && Final.iMes !=2) ||
+                (Inicial.iAno < Final.iAno && Final.iMes < 2)))
+            {
+                dma.qtdDias++;
+            }           
+            
+            return dma;
+        }
+
     }
-    
+
 }
 
-
+/*
  Q3 = encontrar caracter em texto
  @objetivo
     Pesquisar quantas vezes um determinado caracter ocorre em um texto
@@ -168,8 +217,7 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     return qtdOcorrencias;
 }
 
-
- Q5 = inverte número
+Q5 = inverte número
  @objetivo
     Inverter número inteiro
  @entrada
