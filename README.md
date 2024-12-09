@@ -3,6 +3,8 @@ CÓDIGO DA DISCIPLINA: INF029
 CARGA HORÁRIA: 60 HORAS	 
 PROFESSOR: RENATO NOVAIS	De 2014.2 a Atual
 
+https://github.com/renatoln/inf029-renatonovais 
+
 
 
 Objetivos Gerais
